@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: first-todo
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PG_URL
+        fromDatabase:
+          name: first-todo-db
+          property: connectionString
+      - key: PORT
+        value: 3000
+
+databases:
+  - name: first-todo-db
+    plan: free
+    databaseName: todo
+    user: todo_user
